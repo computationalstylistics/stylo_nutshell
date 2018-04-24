@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stylometry with stylo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Stylometry_with_R_instructions_files/shower-ribbon/package/styles/screen-4x3.css">
+  <link rel="stylesheet" href="Stylometry_with_R_instructions_files/rmdshower/style-common.css">
+  <link rel="stylesheet" href="Stylometry_with_R_instructions_files/rmdshower/style-ribbon.css">
+  <link rel="stylesheet" href="Stylometry_with_R_instructions_files/shower-ribbon/style-override.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="Stylometry_with_R_instructions_files/rmdshower/auto-render.min.js" type="text/javascript"></script>
+  
+  
+  
+  
+  
+</head>
+
+<body class="shower list">
+
+  <header class="caption">
+    <h1>Stylometry with stylo</h1>
+    <p>Maciej Eder</p>
+  </header>
+
+  
+  
+<section id="stylometry-with-the-package-stylo" class="titleslide slide level1"><h2 class="shout">Stylometry with the package stylo</h2></section><section id="disclaimer" class="slide level2">
+<h2>Disclaimer</h2>
+<p>This crash tutorial introduces basic functions of the package <code>stylo</code>, in oder to help the users start their experiments in no time. Essentially this means that no theoretical background will be provided. Also, the discussion on the functionalities of the package <code>stylo</code> will be reduced as much as possible. For more details, please refer to the following resources:</p>
+<ul>
+<li>a tutorial</li>
+<li>paper in R Journal</li>
+<li>full documentation at CRAN</li>
+</ul>
+</section><section id="installing-stylo" class="slide level2">
+<h2>Installing <code>stylo</code></h2>
+<ul>
+<li>run R</li>
+<li>type <code>install.packages(&quot;stylo&quot;)</code></li>
+<li>pick your R server</li>
+<li>click <code>OK</code></li>
+<li>done!</li>
+</ul>
+</section><section id="some-basic-r-functions-just-in-case" class="slide level2">
+<h2>Some basic R functions, just in case</h2>
+<ul>
+<li>to activate a package: <code>library(stylo)</code></li>
+<li>to set working directory: <code>setwd(&quot;path/to/my/stuff&quot;)</code></li>
+<li>to find your current location: <code>getwd()</code></li>
+<li>to list files in your current location: <code>list.files()</code></li>
+<li>to get help: <code>help(&lt;function&gt;)</code>, e.g. <code>help(stylo)</code></li>
+<li>to quit R: <code>q()</code></li>
+</ul>
+</section><section id="main-functions-stylo" class="slide level2">
+<h2>Main functions: <code>stylo()</code></h2>
+<ul>
+<li>It computes distances (differences) between texts, …</li>
+<li>… represented as rows of frequencies of most frequent words.</li>
+<li>Then it plots graphs of those distances:
+<ul>
+<li><strong>Cluster Analysis</strong> plots (dendrograms)</li>
+<li><strong>Multidimensional Scaling</strong> scatterplots</li>
+<li><strong>Principal Components Analysis</strong> scatterplots</li>
+<li><strong>Bootstrap Consensus Trees</strong> plots (for multiple parameter settings)</li>
+<li><strong>Bootstrap Consensus Networks</strong> (other software will be needed to take over)</li>
+</ul></li>
+<li>The plots can be both displayed on screen and saved to a file (e.g. PNG).</li>
+</ul>
+</section><section id="main-functions-classify" class="slide level2">
+<h2>Main functions: <code>classify()</code></h2>
+<ul>
+<li>It trains a model for pre-defined groups of texts, e.g. authors.</li>
+<li>Then it computes distances (differences) between texts, …</li>
+<li>… represented as rows of frequencies of most frequent words.</li>
+<li>Finally, it compares the trained models with test texts, using:
+<ul>
+<li><strong>Delta</strong> classifier (lazy learner introduced by Burrows)</li>
+<li><strong>k-NN</strong> classifier (lazy learner relying on &gt;1 neighbors)</li>
+<li><strong>Suppor Vector Machines</strong>, a high-performance non-probabilistic classifier</li>
+<li><strong>Naive Bayes</strong>, a classical yet slightly outdated classifier</li>
+<li><strong>Nearest Shrunken Centroids</strong>, a classifier for high-dimensional datasets</li>
+</ul></li>
+<li>A final report of the classifier’s performance is outputted.</li>
+</ul>
+</section><section id="main-functions-oppose" class="slide level2">
+<h2>Main functions: <code>oppose()</code></h2>
+<ul>
+<li>Designed to compare two (groups of) texts</li>
+<li>It cuts input texts into equal-sized samples</li>
+<li>Finds words characteristic for two (groups) of texts
+<ul>
+<li>These can be reused with <code>stylo()</code> or <code>classify()</code></li>
+</ul></li>
+<li>Produces a diagram of the use of each group’s words</li>
+</ul>
+</section><section id="functions-rolling.classify" class="slide level2">
+<h2>Functions: <code>rolling.classify()</code></h2>
+<ul>
+<li>Looks for traces of authors in a co-authored text…</li>
+<li>… by sliding through this text sequentially in order to detect peculiarities.</li>
+<li>Produces a graph of the respective strengths of these traces.</li>
+</ul>
+</section><section id="preparing-a-corpus" class="slide level2">
+<h2>Preparing a corpus</h2>
+<ul>
+<li></li>
+<li>in your favourite folder, create a subfolder named <code>corpus</code></li>
+<li>put your raw text files there, e.g.:
+<ul>
+<li><code>Shakespeare_Hamlet.txt</code></li>
+<li><code>Kyd_Tragedy.txt</code></li>
+<li>etc.</li>
+</ul></li>
+</ul>
+</section><section id="running-stylo" class="slide level2">
+<h2>Running <code>stylo()</code></h2>
+<ol type="1">
+<li>activate the package
+<ul>
+<li>type <code>library(stylo)</code>, hit ENTER</li>
+</ul></li>
+<li>navigate to your favourite folder:
+<ul>
+<li>geeks: <code>setwd(&quot;the/path/to/my/favourite/folder&quot;)</code></li>
+<li>RStudio users: find your directory in the <strong>Files</strong> panel, then use <strong>Menu &gt; More &gt; Set as Working Directory</strong></li>
+<li>Windows users: use <strong>Menu &gt; File &gt; Change directory</strong></li>
+<li>MaxOS users: use <strong>Menu &gt; Misc &gt; Change working directory</strong></li>
+</ul></li>
+<li>launch the main function:
+<ul>
+<li>type <code>stylo()</code>, hit ENTER</li>
+</ul></li>
+</ol>
+</section><section id="stylo-parameters" class="slide level2">
+<h2><code>stylo()</code> parameters</h2>
+<ul>
+<li>INPUT: state your txts’ format</li>
+<li>LANGUAGE: self-evident</li>
+<li>Don’t press OK yet!</li>
+</ul>
+<p><img src="img/stylo_1.png" alt="title" width="500" /></p>
+</section><section id="stylo-parameters-1" class="slide level2">
+<h2><code>stylo()</code> parameters</h2>
+<ul>
+<li>FEATURES: things to count: words or characters
+<ul>
+<li>ngram size: say 1 for single features, 2 for 2-grams, etc.</li>
+</ul></li>
+<li>MFW SETTINGS: how many most frequent words to use
+<ul>
+<li>in most cases, <code>Minimum = Maximum</code></li>
+</ul></li>
+</ul>
+<p><img src="img/stylo_2.png" alt="title" width="500" /></p>
+</section><section id="stylo-parameters-2" class="slide level2">
+<h2><code>stylo()</code> parameters</h2>
+<p>CULLING: MANIPULATING THE WORDLIST (0) 0%: NO WORDS ARE REMOVED 100%: ALL WORDS ARE REMOVED THAT DO NOT OCCUR IN ALL THE TEXTS DELETE PRONOUNS? DON’T PRESS „OK” YET!!!</p>
+</section><section id="stylo-parameters-3" class="slide level2">
+<h2><code>stylo()</code> parameters</h2>
+<p>STYLO() PARAMETERS STATISTICS: PICK STATISTICS METHOD (Cluster Analysis) DISTANCES: TYPE OF DISTANCE MEASURE (Classic Delta) DON’T PRESS „OK” YET!!!</p>
+<p><img src="img/stylo_3.png" alt="title" width="500" /></p>
+</section><section id="stylo-parameters-4" class="slide level2">
+<h2><code>stylo()</code> parameters</h2>
+<p>SAMPLING: (No sampling) DO I WANT TO SAMPLE THE TEXTS AND HOW DON’T PRESS „OK” YET!!!</p>
+<p><img src="img/stylo_4.png" alt="title" width="500" /></p>
+</section><section id="stylo-parameters-5" class="slide level2">
+<h2><code>stylo()</code> parameters</h2>
+<p>OUTPUT: (Onscreen) GRAPH FORMAT ETC. PRESS „OK”!!! …WAIT FOR IT…</p>
+<p><img src="img/stylo_5.png" alt="title" width="500" /></p>
+</section><section id="running-gephi" class="slide level2">
+<h2>Running Gephi</h2>
+<ul>
+<li>[TBD!]</li>
+</ul>
+<p>RUNNING GEPHI FIRST WE NEED TO RUN STYLO: It creates an OUTPUT FILE named e.g. 50 British Novels_100-1000_MFWs_Culled_100_Pronouns deleted_Classic Delta_C_0.5_EDGES.csv SELECT GEPHI&gt;NEW PROJECT Data laboratory&gt;Import Spreadsheet Import settings: Separation: Comma As table: Edges table Charset: UTF-8? Windows-1252… Next</p>
+<p>RUNNING GEPHI Select ALL available options FINISH! We need to get authors’ names… Click</p>
+<p>And set: OK! Copy ID column to LABEL</p>
+<p>RUNNING GEPHI PREVIEW PARTITION CLICK SELECT: e.g. Author Apply Show labels LAYOUT ForceAtlas 2 Dissuade Hubs Prevent Overlap Edge Weight Influence 0.5 Scaling: 500 RUN! LAYOUT (CONT) Expansion RUN!</p>
+<p>RUNNING GEPHI OVERVIEW NODE LABELS SHOW LABELS EDGES SHOW EDGES Thickness: np. 0.1, 0.01… REFRESH! Reset zoom SAVING NETWORK: File &gt; Save WITH .gephi EXTENSION PICTURE: File &gt; Export &gt; SVG/PDF/PNG Options &gt; Landscape PHEW!</p>
+<p>RUNNING OPPOSE DIFFERENT SUBFOLDER STRUCTURE: <code>primary_set</code> <code>secondary_set</code> <code>test_set</code> (optional) <code>library(stylo)</code> <ENTER> <code>oppose()</code> <ENTER> What we get: <code>WORDS_PREFERRED</code> characteristic for the primary_set texts <code>WORDS_AVOIDED</code> characteristic for the secondary_set texts word frequency graph</p>
+<p>OPPOSE() PARAMETERS Slice length: size (in words) of the samples (5000) Slice overlap: (0) Method: (Craig’s Zeta) Visualization: type of graph (Markers)</p>
+<p>RUNNING ROLLING.CLASSIFY DIFFERENT SUBFOLDER STRUCTURE (AGAIN): reference_set (individual writings) test_set (collaborative text) <code>library(stylo)</code> <ENTER> <code>rolling.classify(write.png.file = TRUE, classification.method = &quot;delta&quot;, mfw = 100, training.set.sampling = &quot;normal.sampling&quot;, slice.size = 5000,slice.overlap = 4500)</code> What we get: Similarity graph</p>
+</section>
+
+  <!--
+  To hide progress bar from entire presentation
+  just remove “progress” element.
+  -->
+  <!-- <div class="progress"></div> -->
+  <script src="Stylometry_with_R_instructions_files/rmdshower/node_modules/shower/node_modules/shower-core/shower.min.js"></script>
+  <!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+  <!-- Photos by John Carey, fiftyfootshadows.net -->
+
+    <script>renderMathInElement(document.body);</script>
+  
+  
+</body>
+</html>
