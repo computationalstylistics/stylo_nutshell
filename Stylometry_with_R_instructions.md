@@ -33,9 +33,9 @@ no theoretical background will be provided. Also, the discussion on the function
 of the package  `stylo` will be reduced as much as possible. For more details, 
 please refer to the following resources:
 
-* a tutorial
-* paper in R Journal
-* full documentation at CRAN
+* for beginners: a concise [HOWTO](https://sites.google.com/site/computationalstylistics/stylo/stylo_howto.pdf)
+* for advanced users: a paper in [R Journal](https://journal.r-project.org/archive/2016/RJ-2016-007/RJ-2016-007.pdf)
+* full documentation [at CRAN](https://cran.r-project.org/web/packages/stylo/stylo.pdf)
 
 
 
