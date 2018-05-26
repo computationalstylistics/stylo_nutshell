@@ -1,7 +1,7 @@
 ---
 title: "Stylometry with `stylo`"
 author: 
-  Maciej Eder
+  Maciej Eder, Joanna Byszuk, Maciej Eder
 date: 19 IV 2018
 output: 
   rmdshower::shower_presentation:
@@ -27,11 +27,7 @@ output:
 
 ## Disclaimer
 
-This crash tutorial introduces basic functions of the package `stylo`, in oder 
-to help  the users start their experiments in no time. Essentially this means that 
-no theoretical background will be provided. Also, the discussion on the functionalities 
-of the package  `stylo` will be reduced as much as possible. For more details, 
-please refer to the following resources:
+This crash tutorial introduces basic functions of the package `stylo`, in oder to help  the users start their experiments in no time. Essentially this means that no theoretical background will be provided. Also, the discussion on the functionalities of the package  `stylo` will be reduced as much as possible. For more details, please refer to the following resources:
 
 * for beginners: a concise [HOWTO](https://sites.google.com/site/computationalstylistics/stylo/stylo_howto.pdf)
 * for advanced users: a paper in [R Journal](https://journal.r-project.org/archive/2016/RJ-2016-007/RJ-2016-007.pdf)
@@ -84,6 +80,18 @@ please refer to the following resources:
 
 
 
+## Functions: `stylo.network()`
+
+
+* It is an extended version of the function `stylo()`.
+* It performs Bootstrap Consensus Networks, or a network-like generalization of the Bootstrap Consensus Trees method.
+* It produces interactive visualizations in a web browser: to make it happen, you have to install an additional R package first. Type: `install.packages("D3network")`
+
+
+
+
+
+
 ## Main functions: `classify()`
 
 * It trains a model for pre-defined groups of texts, e.g. authors.
@@ -121,9 +129,23 @@ please refer to the following resources:
 
 
 
+
+
+## Functions: `imposters()`
+
+* Performs a computation-heavy technique of authorship verification, referred to as the General Imposters method.
+* It compares a disputed text against (a) some texts by a potential author of that text, and (b) several texts written by people who could not have written it (aka the imposters).
+* In many random iterations it extimates if the text in question was more likely written by the candidate, or by any of the imposters. 
+
+
+
+
+
+
+
 ## Preparing a corpus
 
-* 
+* before you launch R, ...
 * in your favourite folder, create a subfolder named `corpus`
 * put your raw text files there, e.g.:
     * `Shakespeare_Hamlet.txt`
@@ -167,7 +189,7 @@ please refer to the following resources:
 
 
 * FEATURES: things to count: words or characters
-    * ngram size: say 1 for single features, 2 for 2-grams, etc.
+    * ngram size: say 1 for single features, 2 for 2-grams, etc. In a vast majority of cases, you’ll choose word 1-grams.
 * MFW SETTINGS: how many most frequent words to use
     * in most cases, `Minimum = Maximum`
 
@@ -178,8 +200,10 @@ please refer to the following resources:
 
 ## `stylo()` parameters
 
-CULLING: MANIPULATING THE WORDLIST (0)
-0%: NO WORDS ARE REMOVED
+* CULLING: optionally, filter out some words you DON’T want to analyze, e.g.:
+    * 0%: all the words survive culling
+    * 20%: a given word has to appear in at least 20% texts
+    * 100%: an extreme filter, 
 100%: ALL WORDS ARE REMOVED THAT DO NOT OCCUR IN ALL THE TEXTS
 DELETE PRONOUNS?
 DON’T PRESS „OK” YET!!!
