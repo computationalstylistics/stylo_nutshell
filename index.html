@@ -30,7 +30,7 @@
   
 <section id="disclaimer" class="slide level2">
 <h2>Disclaimer</h2>
-<p>This crash tutorial introduces basic functions of the package <code>stylo</code>, in oder to help the users start their experiments in no time. Essentially this means that no theoretical background will be provided. Also, the discussion on the functionalities of the package <code>stylo</code> will be reduced as much as possible. For more details, please refer to the following resources:</p>
+<p>This crash tutorial introduces basic functions of the package <code>stylo</code>, in order to help the users start their experiments in no time. Essentially this means that no theoretical background will be provided. Also, the discussion on the functionalities of the package <code>stylo</code> will be reduced as much as possible. For more details, please refer to the following resources:</p>
 <ul>
 <li>for beginners: a concise <a href="https://sites.google.com/site/computationalstylistics/stylo/stylo_howto.pdf">HOWTO</a></li>
 <li>for advanced users: a paper in <a href="https://journal.r-project.org/archive/2016/RJ-2016-007/RJ-2016-007.pdf">R Journal</a></li>
@@ -71,7 +71,7 @@
 <li><strong>Bootstrap Consensus Trees</strong> plots (for multiple parameter settings)</li>
 <li><strong>Bootstrap Consensus Networks</strong> (other software will be needed to take over)</li>
 </ul></li>
-<li>The plots can be both displayed on screen and saved to a file (e.g. PNG).</li>
+<li>The plots can be both displayed on screen and saved to a file (e.g. PNG).</li>
 </ul>
 </section>
 <section id="functions-stylo.network" class="slide level2">
@@ -85,7 +85,7 @@
 <section id="main-functions-classify" class="slide level2">
 <h2>Main functions: <code>classify()</code></h2>
 <ul>
-<li>It trains a model for pre-defined groups of texts, e.g. authors.</li>
+<li>It trains a model for pre-defined groups of texts, e.g. authors.</li>
 <li>Then it computes distances (differences) between texts, …</li>
 <li>… represented as rows of frequencies of most frequent words.</li>
 <li>Finally, it compares the trained models with test texts, using:
@@ -124,7 +124,7 @@
 <ul>
 <li>Performs a computation-heavy technique of authorship verification, referred to as the General Imposters method.</li>
 <li>It compares a disputed text against (a) some texts by a potential author of that text, and (b) several texts written by people who could not have written it (aka the imposters).</li>
-<li>In many random iterations it extimates if the text in question was more likely written by the candidate, or by any of the imposters.</li>
+<li>In many random iterations it estimates if the text in question was more likely written by the candidate, or by any of the imposters.</li>
 </ul>
 </section>
 <section id="preparing-a-corpus" class="slide level2">
@@ -163,11 +163,11 @@
 <section id="stylo-parameters" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
 <ul>
-<li>INPUT: state your txts’ format</li>
+<li>INPUT: state your texts’ format</li>
 <li>LANGUAGE: self-evident</li>
 <li>Don’t press OK yet!</li>
 </ul>
-<p><img src="img/stylo_1.png" alt="title" />{width=500px}</p>
+<p><img src="img/stylo_1.png" alt="title" width="500" /></p>
 </section>
 <section id="stylo-parameters-1" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
@@ -181,7 +181,7 @@
 <li>in most cases, <code>Minimum = Maximum</code></li>
 </ul></li>
 </ul>
-<p><img src="img/stylo_2.png" alt="title" />{width=500px}</p>
+<p><img src="img/stylo_2.png" alt="title" width="500" /></p>
 </section>
 <section id="stylo-parameters-2" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
@@ -190,11 +190,11 @@
 <ul>
 <li>0 – all the words survive culling</li>
 <li>20 – a given word has to appear in at least 20% texts</li>
-<li>100 – an extreme filter: all words are removed that don’t occur in all the texts</li>
+<li>100 – an extreme filter: all words that don’t appear in all the texts are removed</li>
 </ul></li>
 <li>DELETE PRONOUNS: optionally, filter out personal pronouns.
 <ul>
-<li>Attention! The set of pronouns is decided according to the chosen language</li>
+<li>Attention! The set of pronouns is chosen according to the selected language</li>
 </ul></li>
 </ul>
 </section>
@@ -209,7 +209,7 @@
 <li>Eder’s Delta: a good choice for highly inflected languages</li>
 </ul></li>
 </ul>
-<p><img src="img/stylo_3.png" alt="title" />{width=500px}</p>
+<p><img src="img/stylo_3.png" alt="title" width="500" /></p>
 </section>
 <section id="stylo-parameters-4" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
@@ -222,7 +222,7 @@
 <li>number of samples: random harvesting can be repeated <em>n</em> times</li>
 </ul></li>
 </ul>
-<p><img src="img/stylo_4.png" alt="title" />{width=500px}</p>
+<p><img src="img/stylo_4.png" alt="title" width="500" /></p>
 </section>
 <section id="stylo-parameters-5" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
@@ -232,7 +232,7 @@
 <li>PCA flavour: choose “loadings” to see the discrimination power of particular features (but first, choose PCA on STATISTICS tab)</li>
 <li>horizontal CA tree: use it to position your dendrograms horizontally</li>
 </ul>
-<p><img src="img/stylo_5.png" alt="title" />{width=500px}</p>
+<p><img src="img/stylo_5.png" alt="title" width="500" /></p>
 </section>
 <section id="bootstrap-consensus-networks" class="slide level2">
 <h2>Bootstrap Consensus Networks</h2>
@@ -252,11 +252,11 @@
 </ul></li>
 </ul>
 </section>
-<section id="running-gephi" class="slide level2">
-<h2>Running Gephi</h2>
+<section id="running-gephi-import" class="slide level2">
+<h2>Running Gephi: Import</h2>
 <ul>
-<li>select GEPHI &gt; New Project</li>
-<li>Data laboratory &gt; Import Spreadsheet</li>
+<li>select <strong>GEPHI &gt; New Project</strong></li>
+<li><strong>Data laboratory &gt; Import Spreadsheet</strong></li>
 <li>Import settings:
 <ul>
 <li>Separation: Comma</li>
@@ -268,48 +268,64 @@
 </ul></li>
 </ul>
 </section>
-<section id="running-gephi-1" class="slide level2">
-<h2>Running Gephi</h2>
+<section id="running-gephi-labels" class="slide level2">
+<h2>Running Gephi: Labels</h2>
 <ul>
 <li>We need to get authors’ names…</li>
-<li>Click</li>
-<li>And set:</li>
+<li>Select <strong>Create column with list of regex matching groups &gt; ID</strong>.
+<ul>
+<li>Title: of your choice, e.g. Author,</li>
+<li>Regular Expression: limit what content to extract from the ID,
+<ul>
+<li>e.g. to extract just the author from <code>Brontë_Wuthering.txt</code>: <code>^[A-Za-z]+</code></li>
+</ul></li>
+</ul></li>
 <li>OK!</li>
-<li>Copy ID column to LABEL</li>
+<li><strong>Copy data to other column &gt; Author</strong> to <strong>Label</strong></li>
 </ul>
 </section>
-<section id="running-gephi-2" class="slide level2">
-<h2>Running Gephi</h2>
+<section id="running-gephi-overview" class="slide level2">
+<h2>Running Gephi: Overview</h2>
 <ul>
-<li>Preview</li>
-<li>Partition</li>
-<li>Click</li>
-<li>Select, e.g. Author</li>
+<li>Go to <strong>Overview</strong> panel</li>
+<li>In <strong>Appearance &gt; Nodes &gt; Partition</strong></li>
+<li>Select <strong>Author</strong></li>
 <li>Apply</li>
-<li>Show labels</li>
+<li>Show labels (T icon on the bottom panel)</li>
 </ul>
 </section>
-<section id="gephi-layout" class="slide level2">
-<h2>Gephi Layout</h2>
+<section id="running-gephi-overview-layout" class="slide level2">
+<h2>Running Gephi: Overview Layout</h2>
 <ul>
-<li>ForceAtlas 2</li>
-<li>Dissuade Hubs (hmmm… really?)</li>
-<li>Prevent Overlap (hmmm… really?)</li>
+<li>Select <strong>ForceAtlas 2</strong></li>
+<li>If you have a lot of data:
+<ul>
+<li>Dissuade Hubs</li>
+<li>Prevent Overlap</li>
+</ul></li>
 <li>Edge Weight Influence 0.5</li>
 <li>Scaling: 500</li>
 <li>Run!</li>
 </ul>
 </section>
-<section id="gephi-layout-cont." class="slide level2">
-<h2>Gephi Layout (cont.)</h2>
+<section id="running-gephi-overview-layout-cont." class="slide level2">
+<h2>Running Gephi: Overview Layout (cont.)</h2>
 <ul>
-<li>Expansion</li>
-<li>Run!</li>
+<li>To make labels align:
+<ul>
+<li>select <strong>Label Adjust</strong></li>
+</ul></li>
+<li>If your nodes stick together:
+<ul>
+<li>select <strong>Expansion</strong></li>
+</ul></li>
+<li>Run! (for Expansion - a couple of times)</li>
 </ul>
 </section>
 <section id="running-gephi-preview" class="slide level2">
 <h2>Running Gephi: Preview</h2>
 <ul>
+<li>Go to <strong>Preview</strong> panel</li>
 <li>Node labels
 <ul>
 <li>Show labels</li>
@@ -332,9 +348,9 @@
 </ul></li>
 <li>Picture
 <ul>
-<li>File &gt; Export &gt; SVG/PDF/PNG</li>
+<li>File &gt; Export &gt; SVG/PDF*/PNG</li>
 </ul></li>
-<li>Options &gt; Landscape</li>
+<li>For PDFs <strong>Options &gt; Landscape</strong> &amp; increase margins!</li>
 <li>OK!</li>
 </ul>
 </section>
@@ -371,7 +387,7 @@
 </section>
 <section id="oppose-parameters-1" class="slide level2">
 <h2><code>oppose()</code> parameters</h2>
-<p>Most of the parameters for this somewhat underdeveloped function are not on GUI. You can switch them on as command-line parameters</p>
+<p>Most of the parameters for this somewhat underdeveloped function are not on GUI. You can switch them on as command line parameters</p>
 <ul>
 <li>when your corpus contains non-Latin diacritics:
 <ul>
