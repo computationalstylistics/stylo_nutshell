@@ -211,7 +211,8 @@ This crash tutorial introduces basic functions of the package `stylo`, in oder t
     * 0 – all the words survive culling
     * 20 – a given word has to appear in at least 20% texts
     * 100 – an extreme filter: all words are removed that don’t occur in all the texts
-* DELETE PRONOUNS: 
+* DELETE PRONOUNS: optionally, filter out personal pronouns.
+    * Attention! The set of pronouns is decided according to the chosen language
 
 
 
@@ -219,9 +220,11 @@ This crash tutorial introduces basic functions of the package `stylo`, in oder t
 
 ## `stylo()` parameters
 
-STATISTICS: PICK STATISTICS METHOD (Cluster Analysis)
-DISTANCES: TYPE OF DISTANCE MEASURE (Classic Delta)
-DON’T PRESS „OK” YET!!!
+* STATISTICS: Cluster Analysis, Multidimensional Scaling, etc.
+* DISTANCES: choose how the similarities between texts should be measured
+    * Classic Delta: perhaps a best choice to start
+    * Cosine Delta (aka Wurzburg Delta): perhaps an even better choice
+    * Eder’s Delta: a good choice for highly inflected languages
 
 ![title](img/stylo_3.png){width=500px}
 
@@ -230,10 +233,11 @@ DON’T PRESS „OK” YET!!!
 
 ## `stylo()` parameters
 
-SAMPLING: (No sampling)
-DO I WANT TO SAMPLE THE TEXTS
-AND HOW
-DON’T PRESS „OK” YET!!!
+* SAMPLING: do I want to split the texts
+    * no sampling: the texts will be analyzed as they are
+    * normal sampling: dividing the texts into equal-sized blocks
+    * random sampling: randomly harvesting _N_ words from each text
+    * number of samples: random harvesting can be repeated _n_ times
 
 ![title](img/stylo_4.png){width=500px}
 
@@ -243,106 +247,148 @@ DON’T PRESS „OK” YET!!!
 
 ## `stylo()` parameters
 
-OUTPUT: (Onscreen)
-GRAPH FORMAT ETC.
-PRESS „OK”!!!
-…WAIT FOR IT…
+* OUTPUT: most of the options are self-evident. Some might be useful:
+  * on screen: make sure that this is switched on to see your results
+  * PCA flavour: choose “loadings” to see the discrimination power of particular features (but first, choose PCA on STATISTICS tab)
+  * horizontal CA tree: use it to position your dendrograms horizontally 
 
 ![title](img/stylo_5.png){width=500px}
 
 
+
+
+
+## Bootstrap Consensus Networks
+
+* There are two ways of computing a stylometric network:
+* interactive: 
+    * run the function `stylo.network()`
+    * set the parameters as for Bootstrap Consensus Networks
+    * a web browser will start automatically: your network is there!
+* static, yet highly customizable:
+    * run the function `stylo(network = TRUE)`
+    * find a file named `..._C_0.5_EDGES.csv` in your working directory
+    * load it into a network manipulation tool, e.g. [Gephi](https://gephi.org/)
+
+
+
 ## Running Gephi
 
-* [TBD!]
+* select GEPHI > New Project
+* Data laboratory > Import Spreadsheet
+* Import settings:
+    * Separation: Comma
+    * As table: Edges table
+    * Charset: don’t bother if your filenames contain no fancy characters, e.g. `Brontë_Wuthering.txt`; otherwise choose wisely
+    * Next
+    * Select ALL available options
+    * Finish!
 
 
-RUNNING GEPHI
-FIRST WE NEED TO RUN STYLO: 
-It creates an OUTPUT FILE named e.g.
-50 British Novels_100-1000_MFWs_Culled_100_Pronouns deleted_Classic Delta_C_0.5_EDGES.csv
-SELECT GEPHI>NEW PROJECT
-Data laboratory>Import Spreadsheet
-Import settings:
-Separation: Comma
-As table: Edges table
-Charset: UTF-8? Windows-1252…
-Next
+## Running Gephi
+
+* We need to get authors’ names...
+* Click
+* And set:
+* OK!
+* Copy ID column to LABEL
 
 
-RUNNING GEPHI
-Select ALL available options
-FINISH!
-We need to get authors’ names...
-Click
+## Running Gephi
 
-And set:
-OK!
-Copy ID column to LABEL
-
-
-RUNNING GEPHI
-PREVIEW
-PARTITION
-CLICK
-SELECT: e.g. Author
-Apply
-Show labels
-LAYOUT
-ForceAtlas 2
-Dissuade Hubs
-Prevent Overlap
-Edge Weight Influence 0.5
-Scaling: 500
-RUN!
-LAYOUT (CONT)
-Expansion
-RUN!
-
-RUNNING GEPHI
-OVERVIEW
-NODE LABELS
-SHOW LABELS
-EDGES
-SHOW EDGES
-Thickness: np. 0.1, 0.01...
-REFRESH!
-Reset zoom
-SAVING
-NETWORK:
-File > Save
-WITH .gephi EXTENSION
-PICTURE:
-File > Export > SVG/PDF/PNG
-Options > Landscape
-PHEW!
-
-RUNNING OPPOSE
-DIFFERENT SUBFOLDER STRUCTURE:
-`primary_set`
-`secondary_set`
-`test_set` (optional)
-`library(stylo)` <ENTER>
-`oppose()` <ENTER>
-What we get:
-`WORDS_PREFERRED` characteristic for the primary_set texts
-`WORDS_AVOIDED` characteristic for the secondary_set texts
-word frequency graph
+* Preview
+* Partition
+* Click
+* Select, e.g. Author
+* Apply
+* Show labels
 
 
-OPPOSE() PARAMETERS
-Slice length: size (in words) of the samples (5000)
-Slice overlap: (0)
-Method: (Craig’s Zeta)
-Visualization: type of graph (Markers)
+## Gephi Layout
+
+* ForceAtlas 2
+* Dissuade Hubs (hmmm... really?)
+* Prevent Overlap (hmmm... really?)
+* Edge Weight Influence 0.5
+* Scaling: 500
+* Run!
+
+
+## Gephi Layout (cont.)
+
+* Expansion
+* Run!
+
+
+## Running Gephi: Preview
+
+* Node labels
+    * Show labels
+* Edges
+    * Show edges
+* Thickness: play with 0.1, 0.01, etc.
+* Refresh!
+* Reset zoom
+
+## Running Gephi: saving a network
+
+* File > Save
+    * with `.gephi` extension
+* Picture
+    * File > Export > SVG/PDF/PNG
+* Options > Landscape
+* OK!
 
 
 
-RUNNING ROLLING.CLASSIFY
-DIFFERENT SUBFOLDER STRUCTURE (AGAIN):
-reference_set (individual writings)
-test_set (collaborative text)
-`library(stylo)` <ENTER>
-`rolling.classify(write.png.file = TRUE, classification.method = "delta", mfw = 100, training.set.sampling = "normal.sampling", slice.size = 5000,slice.overlap = 4500)`
-What we get:
-Similarity graph
+
+## Running `oppose()`
+
+* Different subfolder structure:
+    * `primary_set`
+    * `secondary_set`
+    * `test_set` (optional)
+* Running the function:
+    * `library(stylo)` <ENTER>
+    * `oppose()` <ENTER>
+* What we get:
+    * `words_preferred.txt` characteristic for the `primary_set` texts
+    * `words_avoided.txt` characteristic for the `secondary_set` texts
+* word frequency graph
+
+
+
+
+
+## `oppose()` parameters
+
+* Slice length: size (in words) of the samples (5000)
+* Slice overlap: (0)
+* Method: (Craig’s Zeta)
+* Visualization: type of graph (Markers)
+
+
+
+## `oppose()` parameters
+
+Most of the parameters for this somewhat underdeveloped function are not on GUI. You can switch them on as command-line parameters
+
+* when your corpus contains non-Latin diacritics:
+    * `oppose(encoding = "UTF-8", corpus.lang = "Spanish")`
+
+
+
+
+## Running `rolling.classify()`
+
+* Different subfolder structure:
+    * `reference_set` (individual writings)
+    * `test_set` (collaborative text)
+* Running the function:
+    * `library(stylo)` <ENTER>
+    * `rolling.classify(write.png.file = TRUE, classification.method = "delta", mfw = 100, training.set.sampling = "normal.sampling", slice.size = 5000, slice.overlap = 4500)`
+* What we get:
+
+
+
 
