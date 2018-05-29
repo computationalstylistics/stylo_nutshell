@@ -23,12 +23,12 @@
 
   <header class="caption">
     <h1>Stylometry with stylo</h1>
-    <p>Maciej Eder</p>
+    <p>Maciej Eder, Joanna Byszuk, Jan Rybicki</p>
   </header>
 
   
   
-<section id="stylometry-with-the-package-stylo" class="titleslide slide level1"><h2 class="shout">Stylometry with the package stylo</h2></section><section id="disclaimer" class="slide level2">
+<section id="disclaimer" class="slide level2">
 <h2>Disclaimer</h2>
 <p>This crash tutorial introduces basic functions of the package <code>stylo</code>, in oder to help the users start their experiments in no time. Essentially this means that no theoretical background will be provided. Also, the discussion on the functionalities of the package <code>stylo</code> will be reduced as much as possible. For more details, please refer to the following resources:</p>
 <ul>
@@ -36,7 +36,8 @@
 <li>for advanced users: a paper in <a href="https://journal.r-project.org/archive/2016/RJ-2016-007/RJ-2016-007.pdf">R Journal</a></li>
 <li>full documentation <a href="https://cran.r-project.org/web/packages/stylo/stylo.pdf">at CRAN</a></li>
 </ul>
-</section><section id="installing-stylo" class="slide level2">
+</section>
+<section id="installing-stylo" class="slide level2">
 <h2>Installing <code>stylo</code></h2>
 <ul>
 <li>run R</li>
@@ -45,7 +46,8 @@
 <li>click <code>OK</code></li>
 <li>done!</li>
 </ul>
-</section><section id="some-basic-r-functions-just-in-case" class="slide level2">
+</section>
+<section id="some-basic-r-functions-just-in-case" class="slide level2">
 <h2>Some basic R functions, just in case</h2>
 <ul>
 <li>to activate a package: <code>library(stylo)</code></li>
@@ -55,7 +57,8 @@
 <li>to get help: <code>help(&lt;function&gt;)</code>, e.g. <code>help(stylo)</code></li>
 <li>to quit R: <code>q()</code></li>
 </ul>
-</section><section id="main-functions-stylo" class="slide level2">
+</section>
+<section id="main-functions-stylo" class="slide level2">
 <h2>Main functions: <code>stylo()</code></h2>
 <ul>
 <li>It computes distances (differences) between texts, …</li>
@@ -70,7 +73,16 @@
 </ul></li>
 <li>The plots can be both displayed on screen and saved to a file (e.g. PNG).</li>
 </ul>
-</section><section id="main-functions-classify" class="slide level2">
+</section>
+<section id="functions-stylo.network" class="slide level2">
+<h2>Functions: <code>stylo.network()</code></h2>
+<ul>
+<li>It is an extended version of the function <code>stylo()</code>.</li>
+<li>It performs Bootstrap Consensus Networks, or a network-like generalization of the Bootstrap Consensus Trees method.</li>
+<li>It produces interactive visualizations in a web browser: to make it happen, you have to install an additional R package first. Type: <code>install.packages(&quot;networkD3&quot;)</code></li>
+</ul>
+</section>
+<section id="main-functions-classify" class="slide level2">
 <h2>Main functions: <code>classify()</code></h2>
 <ul>
 <li>It trains a model for pre-defined groups of texts, e.g. authors.</li>
@@ -82,30 +94,43 @@
 <li><strong>k-NN</strong> classifier (lazy learner relying on &gt;1 neighbors)</li>
 <li><strong>Suppor Vector Machines</strong>, a high-performance non-probabilistic classifier</li>
 <li><strong>Naive Bayes</strong>, a classical yet slightly outdated classifier</li>
-<li><strong>Nearest Shrunken Centroids</strong>, a classifier for high-dimensional datasets NA</li>
+<li><strong>Nearest Shrunken Centroids</strong>, a classifier for high-dimensional datasets</li>
 </ul></li>
+<li>A final report of the classifier’s performance is outputted.</li>
 </ul>
-</section><section id="main-functions-oppose" class="slide level2">
+</section>
+<section id="main-functions-oppose" class="slide level2">
 <h2>Main functions: <code>oppose()</code></h2>
 <ul>
 <li>Designed to compare two (groups of) texts</li>
 <li>It cuts input texts into equal-sized samples</li>
 <li>Finds words characteristic for two (groups) of texts
 <ul>
-<li>These can be reused with <code>stylo()</code> or <code>classify()</code> NA</li>
+<li>These can be reused with <code>stylo()</code> or <code>classify()</code></li>
 </ul></li>
+<li>Produces a diagram of the use of each group’s words</li>
 </ul>
-</section><section id="functions-rolling.classify" class="slide level2">
+</section>
+<section id="functions-rolling.classify" class="slide level2">
 <h2>Functions: <code>rolling.classify()</code></h2>
 <ul>
 <li>Looks for traces of authors in a co-authored text…</li>
 <li>… by sliding through this text sequentially in order to detect peculiarities.</li>
 <li>Produces a graph of the respective strengths of these traces.</li>
 </ul>
-</section><section id="preparing-a-corpus" class="slide level2">
+</section>
+<section id="functions-imposters" class="slide level2">
+<h2>Functions: <code>imposters()</code></h2>
+<ul>
+<li>Performs a computation-heavy technique of authorship verification, referred to as the General Imposters method.</li>
+<li>It compares a disputed text against (a) some texts by a potential author of that text, and (b) several texts written by people who could not have written it (aka the imposters).</li>
+<li>In many random iterations it extimates if the text in question was more likely written by the candidate, or by any of the imposters.</li>
+</ul>
+</section>
+<section id="preparing-a-corpus" class="slide level2">
 <h2>Preparing a corpus</h2>
 <ul>
-<li></li>
+<li>before you launch R, …</li>
 <li>in your favourite folder, create a subfolder named <code>corpus</code></li>
 <li>put your raw text files there, e.g.:
 <ul>
@@ -114,7 +139,8 @@
 <li>etc.</li>
 </ul></li>
 </ul>
-</section><section id="running-stylo" class="slide level2">
+</section>
+<section id="running-stylo" class="slide level2">
 <h2>Running <code>stylo()</code></h2>
 <ol type="1">
 <li>activate the package
@@ -133,16 +159,22 @@
 <li>type <code>stylo()</code>, hit ENTER</li>
 </ul></li>
 </ol>
-</section><section id="stylo-parameters" class="slide level2">
+</section>
+<section id="stylo-parameters" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
-<p>NA * LANGUAGE: self-evident NA</p>
+<ul>
+<li>INPUT: state your txts’ format</li>
+<li>LANGUAGE: self-evident</li>
+<li>Don’t press OK yet!</li>
+</ul>
 <p><img src="img/stylo_1.png" alt="title" width="500" /></p>
-</section><section id="stylo-parameters-1" class="slide level2">
+</section>
+<section id="stylo-parameters-1" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
 <ul>
 <li>FEATURES: things to count: words or characters
 <ul>
-<li>ngram size: say 1 for single features, 2 for 2-grams, etc.</li>
+<li>ngram size: say 1 for single features, 2 for 2-grams, etc. In a vast majority of cases, you’ll choose word 1-grams.</li>
 </ul></li>
 <li>MFW SETTINGS: how many most frequent words to use
 <ul>
@@ -150,33 +182,46 @@
 </ul></li>
 </ul>
 <p><img src="img/stylo_2.png" alt="title" width="500" /></p>
-</section><section id="stylo-parameters-2" class="slide level2">
+</section>
+<section id="stylo-parameters-2" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
-<p>CULLING: MANIPULATING THE WORDLIST (0) 0%: NO WORDS ARE REMOVED 100%: ALL WORDS ARE REMOVED THAT DO NOT OCCUR IN ALL THE TEXTS DELETE PRONOUNS? NA</p>
-</section><section id="stylo-parameters-3" class="slide level2">
+<ul>
+<li>CULLING: optionally, filter out some words you <strong>don’t</strong> want to analyze. Examples:
+<ul>
+<li>0 – all the words survive culling</li>
+<li>20 – a given word has to appear in at least 20% texts</li>
+<li>100 – an extreme filter: all words are removed that don’t occur in all the texts</li>
+</ul></li>
+<li>DELETE PRONOUNS:</li>
+</ul>
+</section>
+<section id="stylo-parameters-3" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
-<p>STYLO() PARAMETERS STATISTICS: PICK STATISTICS METHOD (Cluster Analysis) DISTANCES: TYPE OF DISTANCE MEASURE (Classic Delta) NA</p>
+<p>STATISTICS: PICK STATISTICS METHOD (Cluster Analysis) DISTANCES: TYPE OF DISTANCE MEASURE (Classic Delta) DON’T PRESS „OK” YET!!!</p>
 <p><img src="img/stylo_3.png" alt="title" width="500" /></p>
-</section><section id="stylo-parameters-4" class="slide level2">
+</section>
+<section id="stylo-parameters-4" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
-<p>SAMPLING: (No sampling) DO I WANT TO SAMPLE THE TEXTS AND HOW NA</p>
+<p>SAMPLING: (No sampling) DO I WANT TO SAMPLE THE TEXTS AND HOW DON’T PRESS „OK” YET!!!</p>
 <p><img src="img/stylo_4.png" alt="title" width="500" /></p>
-</section><section id="stylo-parameters-5" class="slide level2">
+</section>
+<section id="stylo-parameters-5" class="slide level2">
 <h2><code>stylo()</code> parameters</h2>
-<p>OUTPUT: (Onscreen) GRAPH FORMAT ETC. NA NA</p>
+<p>OUTPUT: (Onscreen) GRAPH FORMAT ETC. PRESS „OK”!!! …WAIT FOR IT…</p>
 <p><img src="img/stylo_5.png" alt="title" width="500" /></p>
-</section><section id="running-gephi" class="slide level2">
+</section>
+<section id="running-gephi" class="slide level2">
 <h2>Running Gephi</h2>
 <ul>
 <li>[TBD!]</li>
 </ul>
-<p>RUNNING GEPHI FIRST WE NEED TO RUN STYLO: It creates an OUTPUT FILE named e.g. 50 British Novels_100-1000_MFWs_Culled_100_Pronouns deleted_Classic Delta_C_0.5_EDGES.csv SELECT GEPHI&gt;NEW PROJECT Data laboratory&gt;Import Spreadsheet Import settings: Separation: Comma As table: Edges table NA Next</p>
-<p>RUNNING GEPHI Select ALL available options FINISH! NA Click</p>
+<p>RUNNING GEPHI FIRST WE NEED TO RUN STYLO: It creates an OUTPUT FILE named e.g. 50 British Novels_100-1000_MFWs_Culled_100_Pronouns deleted_Classic Delta_C_0.5_EDGES.csv SELECT GEPHI&gt;NEW PROJECT Data laboratory&gt;Import Spreadsheet Import settings: Separation: Comma As table: Edges table Charset: UTF-8? Windows-1252… Next</p>
+<p>RUNNING GEPHI Select ALL available options FINISH! We need to get authors’ names… Click</p>
 <p>And set: OK! Copy ID column to LABEL</p>
 <p>RUNNING GEPHI PREVIEW PARTITION CLICK SELECT: e.g. Author Apply Show labels LAYOUT ForceAtlas 2 Dissuade Hubs Prevent Overlap Edge Weight Influence 0.5 Scaling: 500 RUN! LAYOUT (CONT) Expansion RUN!</p>
 <p>RUNNING GEPHI OVERVIEW NODE LABELS SHOW LABELS EDGES SHOW EDGES Thickness: np. 0.1, 0.01… REFRESH! Reset zoom SAVING NETWORK: File &gt; Save WITH .gephi EXTENSION PICTURE: File &gt; Export &gt; SVG/PDF/PNG Options &gt; Landscape PHEW!</p>
 <p>RUNNING OPPOSE DIFFERENT SUBFOLDER STRUCTURE: <code>primary_set</code> <code>secondary_set</code> <code>test_set</code> (optional) <code>library(stylo)</code> <ENTER> <code>oppose()</code> <ENTER> What we get: <code>WORDS_PREFERRED</code> characteristic for the primary_set texts <code>WORDS_AVOIDED</code> characteristic for the secondary_set texts word frequency graph</p>
-<p>OPPOSE() PARAMETERS Slice length: size (in words) of the samples (5000) Slice overlap: (0) NA Visualization: type of graph (Markers)</p>
+<p>OPPOSE() PARAMETERS Slice length: size (in words) of the samples (5000) Slice overlap: (0) Method: (Craig’s Zeta) Visualization: type of graph (Markers)</p>
 <p>RUNNING ROLLING.CLASSIFY DIFFERENT SUBFOLDER STRUCTURE (AGAIN): reference_set (individual writings) test_set (collaborative text) <code>library(stylo)</code> <ENTER> <code>rolling.classify(write.png.file = TRUE, classification.method = &quot;delta&quot;, mfw = 100, training.set.sampling = &quot;normal.sampling&quot;, slice.size = 5000,slice.overlap = 4500)</code> What we get: Similarity graph</p>
 </section>
 

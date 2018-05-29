@@ -10,6 +10,16 @@ output:
     katex: true
     fig_width: 9
     fig_height: 6
+#output: 
+#  revealjs::revealjs_presentation:
+#    theme: white
+#    highlight: pygments
+#    center: false
+#    transition: fade
+#    self_contained: false
+#    fig_width: 9
+#    fig_height: 6
+#    fig_caption: false
 ---
 
 
@@ -17,7 +27,6 @@ output:
 
 
 
-# Stylometry with the package stylo
 
 
 
