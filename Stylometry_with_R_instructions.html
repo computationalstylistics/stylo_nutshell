@@ -138,6 +138,7 @@
 <li><code>Kyd_Tragedy.txt</code></li>
 <li>etc.</li>
 </ul></li>
+<li>to be on the safe side - make sure your files are in UTF-8, especially if the language of your corpus contains diacritics!</li>
 </ul>
 </section>
 <section id="running-stylo" class="slide level2">
@@ -406,10 +407,13 @@
 <li>Running the function:
 <ul>
 <li><code>library(stylo)</code> <ENTER></li>
-<li><code>rolling.classify(write.png.file = TRUE, classification.method = &quot;delta&quot;, mfw = 100, training.set.sampling = &quot;normal.sampling&quot;, slice.size = 5000, slice.overlap = 4500)</code></li>
+<li>Example: <code>rolling.classify(write.png.file = TRUE, classification.method = &quot;svm&quot;, mfw = 100, training.set.sampling = &quot;normal.sampling&quot;, slice.size = 5000, slice.overlap = 4500)</code></li>
 </ul></li>
-<li>What we get:</li>
 </ul>
+</section>
+<section id="running-rolling.classify-1" class="slide level2">
+<h2>Running <code>rolling.classify()</code></h2>
+<p>How to read the output? Look at this example for “Roman de la Rose”: <img src="img/rolling-svm_100-features_5000-per-slice.png" alt="title" width="800" /> Sections attributed to Guillaume de Lorris are marked red, and to Jean de Meun - green. The thickness of the bottom stripe indicates certainty of classification and a vertical dashed line the commonly-accepted division.</p>
 </section>
 
   <!--
