@@ -71,7 +71,7 @@
 <li><strong>Bootstrap Consensus Trees</strong> plots (for multiple parameter settings)</li>
 <li><strong>Bootstrap Consensus Networks</strong> (other software will be needed to take over)</li>
 </ul></li>
-<li>The plots can be both displayed on screen and saved to a file (e.g. PNG).</li>
+<li>The plots can be both displayed on screen and saved to a file (e.g. PNG).</li>
 </ul>
 </section>
 <section id="functions-stylo.network" class="slide level2">
@@ -85,7 +85,7 @@
 <section id="main-functions-classify" class="slide level2">
 <h2>Main functions: <code>classify()</code></h2>
 <ul>
-<li>It trains a model for pre-defined groups of texts, e.g. authors.</li>
+<li>It trains a model for pre-defined groups of texts, e.g. authors.</li>
 <li>Then it computes distances (differences) between texts, …</li>
 <li>… represented as rows of frequencies of most frequent words.</li>
 <li>Finally, it compares the trained models with test texts, using:
@@ -138,6 +138,7 @@
 <li><code>Kyd_Tragedy.txt</code></li>
 <li>etc.</li>
 </ul></li>
+<li>to be on the safe side - make sure your files are in UTF-8, especially if the language of your corpus contains diacritics!</li>
 </ul>
 </section>
 <section id="running-stylo" class="slide level2">
@@ -274,10 +275,10 @@
 <li>We need to get authors’ names…</li>
 <li>Select <strong>Create column with list of regex matching groups &gt; ID</strong>.
 <ul>
-<li>Title: of your choice, e.g. Author,</li>
+<li>Title: of your choice, e.g. Author,</li>
 <li>Regular Expression: limit what content to extract from the ID,
 <ul>
-<li>e.g. to extract just the author from <code>Brontë_Wuthering.txt</code>: <code>^[A-Za-z]+</code></li>
+<li>e.g. to extract just the author from <code>Brontë_Wuthering.txt</code>: <code>^[A-Za-z]+</code></li>
 </ul></li>
 </ul></li>
 <li>OK!</li>
@@ -406,10 +407,13 @@
 <li>Running the function:
 <ul>
 <li><code>library(stylo)</code> <ENTER></li>
-<li><code>rolling.classify(write.png.file = TRUE, classification.method = &quot;delta&quot;, mfw = 100, training.set.sampling = &quot;normal.sampling&quot;, slice.size = 5000, slice.overlap = 4500)</code></li>
+<li>Example: <code>rolling.classify(write.png.file = TRUE, classification.method = &quot;svm&quot;, mfw = 100, training.set.sampling = &quot;normal.sampling&quot;, slice.size = 5000, slice.overlap = 4500)</code></li>
 </ul></li>
-<li>What we get:</li>
 </ul>
+</section>
+<section id="running-rolling.classify-1" class="slide level2">
+<h2>Running <code>rolling.classify()</code></h2>
+<p>How to read the output? Look at this example for “Roman de la Rose”: <img src="img/rolling-svm_100-features_5000-per-slice.png" alt="title" width="800" /> Sections attributed to Guillaume de Lorris are marked red, and to Jean de Meun - green. The thickness of the bottom stripe indicates certainty of classification and a vertical dashed line the commonly-accepted division.</p>
 </section>
 
   <!--
