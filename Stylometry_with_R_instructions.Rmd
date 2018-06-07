@@ -159,6 +159,7 @@ This crash tutorial introduces basic functions of the package `stylo`, in order 
     * `Shakespeare_Hamlet.txt`
     * `Kyd_Tragedy.txt`
     * etc.
+* to be on the safe side - make sure your files are in UTF-8, especially if the language of your corpus contains diacritics!
 
 
 
@@ -392,8 +393,13 @@ Most of the parameters for this somewhat underdeveloped function are not on GUI.
     * `test_set` (collaborative text)
 * Running the function:
     * `library(stylo)` <ENTER>
-    * `rolling.classify(write.png.file = TRUE, classification.method = "delta", mfw = 100, training.set.sampling = "normal.sampling", slice.size = 5000, slice.overlap = 4500)`
-* What we get:
+    * Example: `rolling.classify(write.png.file = TRUE, classification.method = "svm", mfw = 100, training.set.sampling = "normal.sampling", slice.size = 5000, slice.overlap = 4500)`
 
+
+
+## Running `rolling.classify()`
+How to read the output? Look at this example for "Roman de la Rose":
+![title](img/rolling-svm_100-features_5000-per-slice.png){width=800px}
+Sections attributed to Guillaume de Lorris are marked red, and to Jean de Meun - green. The thickness of the bottom stripe indicates certainty of classification and a vertical dashed line the commonly-accepted division.
 
 
