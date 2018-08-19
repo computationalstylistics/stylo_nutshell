@@ -5,8 +5,8 @@ date: 26.05.2018
 output:
   rmdshower::shower_presentation:
     self_contained: false
-    theme: ribbon
-    ratio: 4x3
+#    theme: material
+#    ratio: 4x3
     katex: true
     fig_width: 9
     fig_height: 6
